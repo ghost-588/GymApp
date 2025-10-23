@@ -5,7 +5,7 @@ from typing import Generator
 import os
 
 # Database URL - using SQLite
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./gymapp.db")
+DATABASE_URL = "postgresql://postgres.ussdbvkiiterzyhkeysq:Oy1SWHFJeXZF1c09@aws-1-ap-south-1.pooler.supabase.com:6543/postgres"
 
 # Create SQLAlchemy engine with better configuration
 engine = create_engine(
@@ -49,3 +49,4 @@ def get_db() -> Generator[Session, None, None]:
         yield db
     finally:
         db.close()
+
