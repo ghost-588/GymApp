@@ -24,7 +24,7 @@ async def lifespan(app: FastAPI):
 
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan,debug=True)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 👈 Your frontend origin
@@ -41,3 +41,4 @@ app.include_router(all_exercises_router)
 app.include_router(set_router)
 
 register_exception_handlers(app)
+
