@@ -42,7 +42,9 @@ def get_user_role(
 
 
 @router.post("/", response_model=UserOut)
-def create_user(user_data: UserCreate, repo: UserRepository = Depends()):
+def create_user(user_data: UserCreate, repo: UserRepository = Depends(),current_user: User = Depends(get_current_user)):
+    if current_user.role != UserRole.ADMIN:
+        raise NotAuthorizedError("Not Authorized")
     return repo.create(user_data.model_dump())
 
 
