@@ -41,8 +41,6 @@ class UserExerciseRepository:
             )
             .first()
         )
-        if existing:
-            raise AlreadyExistsError("You add this exercise today")
         all_exercises_repo = AllExerciseRepository(self.db)
         all_exercises_repo.get_by_id(exercise_data.get("exercise_id"))
 
@@ -85,3 +83,4 @@ class UserExerciseRepository:
         self.db.delete(exercise)
         self.db.commit()
         return {"detail": "Exercise deleted successfully"}
+
