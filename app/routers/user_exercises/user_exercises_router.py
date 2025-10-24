@@ -24,7 +24,7 @@ def get_all_user_exercises(
     if current_user.role == UserRole.ADMIN:
         return repo.get_all()
     else:
-        return repo.get_by_user_id(current_user.id)  # You'll need to implement this method
+        return repo.get_all_id(current_user.id)  # You'll need to implement this method
 
 @router.get("/user", response_model=List[UserExerciseOut])
 def get_all_user_exercise(
@@ -94,4 +94,5 @@ def delete_user_exercise(
     user_exercise = repo.get_by_id(exercise_id)
     if current_user.role != UserRole.ADMIN and current_user.id != user_exercise.user.id:
         raise NotAuthorizedError("Not authorized")
+
     return repo.delete(exercise_id)
